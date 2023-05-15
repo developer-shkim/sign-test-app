@@ -1,11 +1,29 @@
-import { StatusBar } from 'expo-status-bar';
-import { StyleSheet, Text, View } from 'react-native';
+import * as React from 'react';
+
+import { StyleSheet, View, Text } from 'react-native';
+import {
+  SigningField,
+  SigningDisplay,
+  SigningPathType,
+} from 'react-native-signing-field';
 
 export default function App() {
+  const [signing, setSigning] = React.useState();
+
   return (
     <View style={styles.container}>
-      <Text>Open up App.js to start working on your app!</Text>
-      <StatusBar style="auto" />
+      <Text> Signing Field </Text>
+      <SigningField
+        style={styles.signingField}
+        setSigning={setSigning}
+        // resetFieldButton={<Text>RESET</Text>}
+      />
+      <Text> Signing Being Displayed </Text>
+      <SigningDisplay
+        signing={signing}
+        style={styles.signingDisplay}
+        strokeWidth={1}
+      />
     </View>
   );
 }
@@ -13,8 +31,21 @@ export default function App() {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    backgroundColor: '#fff',
     alignItems: 'center',
     justifyContent: 'center',
+  },
+  box: {
+    width: 60,
+    height: 60,
+    marginVertical: 20,
+  },
+  signingField: {
+    height: 200,
+  },
+  signingDisplay: {
+    marginTop: 30,
+    height: 200,
+    borderWidth: 1,
+    borderColor: 'green',
   },
 });
